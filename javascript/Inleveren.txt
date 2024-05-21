@@ -1,36 +1,30 @@
+const dagen = ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"]
+
 function RunCode() {
-    document.getElementById("button").remove()
+    //Alle dagen van de week
+    CreateItem("h2", "Alle dagen van de week:")
+    CreateItem("p", dagen)
 
-    const Info = document.createElement("h2")
-    Info.innerText = "Voer een getal in:"
-    document.body.appendChild(Info)
+    //alle werkdagen van de week
+    CreateItem("h2", "Alle werkdagen van de week:")
+    CreateItem("p", dagen.slice(0,5))
 
-    const InputPrompt = document.createElement("input")
-    InputPrompt.type = "number"
-    document.body.appendChild(InputPrompt)
+    //alle Weekenddagen van de week
+    CreateItem("h2", "Alle Weekenddagen van de week:")
+    CreateItem("p", dagen.slice(5,7))
 
-    const ConfirmButton = document.createElement("button")
-    ConfirmButton.innerText = "Confirm"
-    ConfirmButton.onclick = function() {Math.round(CheckInput(InputPrompt.value))}
-    document.body.appendChild(ConfirmButton)
+    //alle Werkdagen Omgedraaid van de week
+    CreateItem("h2", "De werkdagen in omgekeerde volgorde zijn:")
+    CreateItem("p", dagen.slice(0,5).reverse())
+
+    //alle omgedraaid Weekenddagen van de week
+    CreateItem("h2", "Alle Weekenddagen van de week omgedraaid:")
+    CreateItem("p", dagen.slice(5,7).reverse())
+
 }
 
-function CheckInput(Getal) {
-    if (Getal >= 1) {
-        
-        //Create array
-        let Array = []
-        for (let i = 0; i <= Getal; i++) { Array[i] = i; }
-
-        const ArrayText = document.createElement("p")
-        ArrayText.innerText = `Array: ${Array}`
-        document.body.appendChild(ArrayText)
-
-        for (let index = 0; index < Array.length; index++) {
-            const p = document.createElement("p")
-            for (let i = Array.length-1; i >= index; i--) {p.innerText += Array[Array.length-i-1]}
-            document.body.appendChild(p)
-            
-        }
-    }
+function CreateItem(type, text) {
+    item = document.createElement(type)
+    item.innerText = text
+    document.body.appendChild(item)
 }
